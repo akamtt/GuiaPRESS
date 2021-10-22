@@ -4,7 +4,6 @@ const connection = require('./database/connection');
 const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
 const { Router } = require('express');
-
 const Article = require('./articles/Article');
 const Category = require('./categories/Category');
 
