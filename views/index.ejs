@@ -1,8 +1,32 @@
 <%-include ('partials/header.ejs'); %>
-  <%- include("partials/navbar.ejs") %>
+  <%- include("partials/usernavbar.ejs") %>
 
     <body>
-      <h1>GuiaPRESS</h1>
+      <div class="container">
+        <br>
+        <div class="jumbotron form-control bg-light ">
+          <br>
+          <h1 class="display-4">Bem-vindo!</h1>
+          <p class="lead">Este é um simples blog feito com Node.JS</p>
+          <hr class="my-4">
+          <p>Leia e escreva artigos aqui!</p>
+        </div>
+        <br>
+
+        <% articles.forEach(article=> { %>
+          <div class="card">
+            <div class="card-header">
+              <h2>
+                <%= article.title %>
+              </h2>
+            </div>
+            <div class="card-body">
+              <a class="btn btn-success" href="#">Ler Artigo</a>
+            </div>
+          </div>
+          <br>
+          <% }) %>
+      </div>
     </body>
 
     <%-include ('partials/footer.ejs');%>
