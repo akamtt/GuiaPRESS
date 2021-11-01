@@ -56,7 +56,6 @@ router.get('/admin/articles/edit/:id', (req, res) => {
   var id = req.params.id;
   Article.findByPk(id)
     .then((article) => {
-      console.log(article);
       if (article != undefined) {
         Category.findAll().then((categories) => {
           res.render('admin/articles/edit', {
@@ -96,11 +95,33 @@ router.post('/articles/update', (req, res) => {
   });
 });
 
-/* router.get('articles/page/:num', (req, res) => {
+/* router.get('/articles/page/:num', (req, res) => {
   var page = req.params.num;
+  var offset = 0;
 
-  Article.findAndCountAll().then((articles) => {
-    res.json(articles);
+  if (isNaN(page) || page == 1) {
+    offset = 0;
+  } else {
+    offset = parseInt(page) * 4;
+  }
+
+  Article.findAndCountAll({
+    limit: 4,
+    offset: offset,
+    order: [['id', 'DESC']],
+  }).then((articles) => {
+    var next;
+    if (offset + 4 >= articles.count) {
+      next = false;
+    } else {
+      next = true;
+    }
+
+    var result = {
+      next: next,
+      articles: articles,
+    };
+    res.json(result);
   });
 }); */
 
