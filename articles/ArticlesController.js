@@ -91,7 +91,7 @@ router.post('/articles/update', (req, res) => {
       },
     },
   ).then(() => {
-    res.redirect('admin/articles');
+    res.redirect('/admin/articles');
   });
 });
 
