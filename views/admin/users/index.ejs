@@ -1,0 +1,52 @@
+<%- include ('../../partials/header.ejs'); %>
+  <%- include ('../../partials/navbar.ejs'); %>
+
+    <div class="container">
+      <hr>
+      <h2>Usuários</h2>
+      <a class="btn btn-success btn-sm" style="font-weight:bold" href="/admin/users/create">Criar novo usuário</a>
+      <hr>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>E-mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(user=> {%>
+            <tr>
+              <td>
+                <%= user.id %>
+              </td>
+              <td>
+                <%= user.email %>
+              </td>
+              <th>
+                <form method="POST" action="/users/delete" style="display:flex;justify-content: center;" onsubmit="deleteConfirm(event,this)">
+                  <a href="#" class="btn btn-primary">Editar</a>
+                  <input type="hidden" name="id" value="<%= user.id %>">
+                  <button class="btn btn-danger" style="margin-left: 1em">Deletar</button>
+                </form>
+              </th>
+            </tr>
+            <%})%>
+
+        </tbody>
+
+      </table>
+
+    </div>
+    </div>
+    <%- include ('../../partials/footer.ejs'); %>
+      <script>
+        function deleteConfirm(event, form) {
+          event.preventDefault();
+          var decision = confirm("Você quer deletar este usuário?")
+          if (decision) {
+            form.submit();
+          } else {
+            console.log("Delete cancelado!")
+          }
+        }
+      </script>

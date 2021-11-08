@@ -4,7 +4,7 @@
     <div class="container">
       <hr>
       <h2>Artigos</h2>
-      <a class="btn btn-success" href="/admin/articles/new">Criar um novo artigo</a>
+      <a class="btn btn-success btn-sm" href="/admin/articles/new" style="font-weight:bold;">Criar um novo artigo</a>
       <hr>
       <table class="table table-bordered">
         <thead>
@@ -32,9 +32,10 @@
                 <%=article.category.title%>
               </td>
               <td>
-                <form method="POST" action="/articles/delete" style="display:inline-block;" onsubmit="deleteConfirm(event,this)">
+                <form method="POST" action="/articles/delete" style="display:flex" onsubmit="deleteConfirm(event,this)">
+                  <a href="/admin/articles/edit/<%=article.id%>" class="btn btn-primary">Editar</a>
                   <input type="hidden" name="id" value="<%= article.id %>">
-                  <button class="btn btn-danger">Deletar</button>
+                  <button class="btn btn-danger" style="margin-left:1em">Deletar</button>
                 </form>
               </td>
             </tr>
