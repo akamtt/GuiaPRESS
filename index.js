@@ -16,6 +16,9 @@ const User = require('./users/User');
 app.set('view engine', 'ejs');
 
 //SESSIONS
+
+//REDIS
+
 app.use(
   session({
     secret: 'senhaahnes',
@@ -37,6 +40,10 @@ connection
 app.use('/', categoriesController);
 app.use('/', articlesController);
 app.use('/', usersController);
+
+app.get('/session', (req, res) => {});
+
+app.get('/leitura', (req, res) => {});
 
 app.use(express.static('public'));
 
