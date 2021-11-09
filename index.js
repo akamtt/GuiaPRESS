@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 const connection = require('./database/connection');
+
 const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
 const usersController = require('./users/UsersController');
+
 const { Router } = require('express');
 const Article = require('./articles/Article');
 const Category = require('./categories/Category');
@@ -11,6 +14,14 @@ const User = require('./users/User');
 
 //VIEW ENGINE
 app.set('view engine', 'ejs');
+
+//SESSIONS
+app.use(
+  session({
+    secret: 'senhaahnes',
+    cookie: { maxAge: 30000 },
+  }),
+);
 
 //DATABASE
 
